@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohamed Safris - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#17B794',secondary:'#1E3D59'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8f1f5 100%);
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #17B794;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .skill-bar {
+            position: relative;
+            height: 8px;
+            background: #e8f1f5;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .skill-progress {
+            height: 100%;
+            background: #17B794;
+            border-radius: 4px;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #17B794;
+            box-shadow: 0 0 0 2px rgba(23, 183, 148, 0.2);
+        }
+        .mobile-menu {
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .hamburger div {
+            transition: transform 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full bg-white shadow-md z-50">
+        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="#" class="text-2xl font-['Pacifico'] text-primary">MS</a>
+            
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#about" class="nav-link text-gray-700 hover:text-primary transition-colors">About</a>
+                <a href="#projects" class="nav-link text-gray-700 hover:text-primary transition-colors">Projects</a>
+                <a href="#experience" class="nav-link text-gray-700 hover:text-primary transition-colors">Experience</a>
+                <a href="#skills" class="nav-link text-gray-700 hover:text-primary transition-colors">Skills</a>
+                <a href="#contact" class="nav-link text-gray-700 hover:text-primary transition-colors">Contact</a>
+                <a href="#" class="ml-4 px-5 py-2 bg-primary text-white !rounded-button hover:bg-opacity-90 transition-colors whitespace-nowrap">Download CV</a>
+            </div>
+            
+            <!-- Mobile Navigation Button -->
+            <button id="mobile-menu-button" class="md:hidden flex items-center">
+                <div class="hamburger space-y-1.5">
+                    <div class="w-6 h-0.5 bg-gray-800"></div>
+                    <div class="w-6 h-0.5 bg-gray-800"></div>
+                    <div class="w-6 h-0.5 bg-gray-800"></div>
+                </div>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-40 transform translate-x-full opacity-0 mobile-menu md:hidden">
+        <div class="flex flex-col h-full p-8">
+            <div class="flex justify-end mb-8">
+                <button id="close-menu" class="w-8 h-8 flex items-center justify-center">
+                    <i class="ri-close-line ri-lg"></i>
+                </button>
+            </div>
+            <div class="flex flex-col space-y-6 text-xl">
+                <a href="#about" class="text-gray-800 hover:text-primary transition-colors">About</a>
+                <a href="#projects" class="text-gray-800 hover:text-primary transition-colors">Projects</a>
+                <a href="#experience" class="text-gray-800 hover:text-primary transition-colors">Experience</a>
+                <a href="#skills" class="text-gray-800 hover:text-primary transition-colors">Skills</a>
+                <a href="#contact" class="text-gray-800 hover:text-primary transition-colors">Contact</a>
+                <a href="#" class="mt-4 px-5 py-3 bg-primary text-white !rounded-button text-center hover:bg-opacity-90 transition-colors whitespace-nowrap">Download CV</a>
+            </div>
+            <div class="mt-auto flex space-x-4 justify-center">
+                <a href="#" class="w-10 h-10 flex items-center justify-center text-gray-700 hover:text-primary transition-colors">
+                    <i class="ri-github-fill ri-lg"></i>
+                </a>
+                <a href="#" class="w-10 h-10 flex items-center justify-center text-gray-700 hover:text-primary transition-colors">
+                    <i class="ri-linkedin-fill ri-lg"></i>
+                </a>
+                <a href="#" class="w-10 h-10 flex items-center justify-center text-gray-700 hover:text-primary transition-colors">
+                    <i class="ri-twitter-fill ri-lg"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Hero Section -->
+    <section class="hero-gradient pt-28 pb-16 md:pt-32 md:pb-20">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-3/5 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4 text-secondary">Mohamed Safris</h1>
+                    <h2 class="text-xl md:text-2xl font-medium text-gray-600 mb-6">Final Year CSE Student</h2>
+                    
+                    <div class="flex flex-col space-y-3 mb-8">
+                        <div class="flex items-center">
+                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-3">
+                                <i class="ri-map-pin-line"></i>
+                            </div>
+                            <span>Kumbakonam, Tamil Nadu, India</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-3">
+                                <i class="ri-mail-line"></i>
+                            </div>
+                            <span>mohamedsafris11@gmail.com</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-3">
+                                <i class="ri-phone-line"></i>
+                            </div>
+                            <span>0987654321</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex space-x-4">
+                        <a href="#" class="px-5 py-2 bg-primary text-white !rounded-button hover:bg-opacity-90 transition-colors whitespace-nowrap">Contact Me</a>
+                        <a href="#" class="px-5 py-2 border border-gray-300 text-gray-700 !rounded-button hover:bg-gray-50 transition-colors whitespace-nowrap">View Projects</a>
+                    </div>
+                </div>
+                
+                <div class="md:w-2/5 flex justify-center">
+                    <div class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-xl">
+                        <img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20a%20young%20Indian%20male%20computer%20science%20student%2C%20clean%20background%2C%20professional%20attire%2C%20friendly%20smile%2C%20high%20quality%2C%20realistic%2C%20natural%20lighting&width=800&height=800&seq=1&orientation=squarish" alt="Mohamed Safris" class="w-full h-full object-cover object-top">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center text-secondary">About Me</h2>
+            
+            <div class="flex flex-col md:flex-row items-start">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-12">
+                    <p class="text-lg leading-relaxed mb-6">
+                        I'm a final-year <span class="font-medium text-primary">Computer Science and Engineering student</span> at Dhanalashmi Srinivasan College of Engineering, Kumbakonam. My academic journey has equipped me with a strong foundation in various aspects of computer science.
+                    </p>
+                    <p class="text-lg leading-relaxed mb-6">
+                        I'm passionate about creating innovative solutions through software development, with particular interests in web technologies, cybersecurity, and DevOps practices. I enjoy the creative aspects of technology as well, including graphic design and video editing.
+                    </p>
+                    <p class="text-lg leading-relaxed">
+                        Currently, I'm focused on expanding my practical experience through internships and personal projects, aiming to bridge the gap between academic knowledge and real-world applications. I'm always eager to learn new technologies and methodologies to stay at the forefront of this rapidly evolving field.
+                    </p>
+                </div>
+                
+                <div class="md:w-1/2 bg-gray-50 p-8 rounded-lg shadow-sm">
+                    <h3 class="text-xl font-semibold mb-6 text-secondary">My Interests</h3>
+                    
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-lg text-primary mr-4">
+                                <i class="ri-code-s-slash-line ri-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium mb-1">Software Development</h4>
+                                <p class="text-sm text-gray-600">Building functional, efficient applications</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-lg text-primary mr-4">
+                                <i class="ri-palette-line ri-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium mb-1">Graphic Design</h4>
+                                <p class="text-sm text-gray-600">Creating visual content and UI/UX</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-lg text-primary mr-4">
+                                <i class="ri-movie-line ri-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium mb-1">Video Editing</h4>
+                                <p class="text-sm text-gray-600">Producing engaging video content</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-lg text-primary mr-4">
+                                <i class="ri-shield-keyhole-line ri-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium mb-1">Cybersecurity</h4>
+                                <p class="text-sm text-gray-600">Securing digital systems and data</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start col-span-2">
+                            <div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-lg text-primary mr-4">
+                                <i class="ri-server-line ri-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium mb-1">DevOps</h4>
+                                <p class="text-sm text-gray-600">Streamlining development and operations</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-center text-secondary">My Projects</h2>
+            <p class="text-lg text-gray-600 text-center mb-12 max-w-2xl mx-auto">Here are some of the projects I've worked on to apply and enhance my skills.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=modern%20task%20management%20app%20interface%2C%20clean%20design%2C%20to-do%20list%20application%20with%20tasks%2C%20categories%2C%20and%20completion%20status%2C%20professional%20UI%20design%2C%20minimalist%20style%2C%20light%20theme&width=800&height=400&seq=2&orientation=landscape" alt="ToDo List Project" class="w-full h-full object-cover object-top">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">ToDo List</h3>
+                        <p class="text-gray-600 mb-4">A comprehensive task management web application with features like task categorization, due dates, and progress tracking.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">HTML</span>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">CSS</span>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">JavaScript</span>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">LocalStorage</span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="#" class="px-4 py-2 bg-primary text-white !rounded-button text-sm hover:bg-opacity-90 transition-colors whitespace-nowrap">View Demo</a>
+                            <a href="#" class="px-4 py-2 border border-gray-300 text-gray-700 !rounded-button text-sm hover:bg-gray-50 transition-colors whitespace-nowrap">Source Code</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=modern%20calendar%20application%20interface%2C%20interactive%20calendar%20with%20events%2C%20appointments%2C%20and%20reminders%2C%20clean%20UI%20design%2C%20professional%20layout%2C%20responsive%20design%2C%20light%20theme%20with%20subtle%20color%20accents&width=800&height=400&seq=3&orientation=landscape" alt="Calendar Project" class="w-full h-full object-cover object-top">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Interactive Calendar</h3>
+                        <p class="text-gray-600 mb-4">A responsive, interactive calendar tool with event management, reminders, and multi-view options.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">React</span>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">CSS</span>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">Firebase</span>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">Responsive</span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="#" class="px-4 py-2 bg-primary text-white !rounded-button text-sm hover:bg-opacity-90 transition-colors whitespace-nowrap">View Demo</a>
+                            <a href="#" class="px-4 py-2 border border-gray-300 text-gray-700 !rounded-button text-sm hover:bg-gray-50 transition-colors whitespace-nowrap">Source Code</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=weather%20forecast%20application%20interface%2C%20modern%20weather%20app%20showing%20temperature%2C%20conditions%2C%20and%20forecast%20for%20multiple%20days%2C%20clean%20UI%20with%20weather%20icons%2C%20professional%20design%2C%20light%20theme%20with%20weather%20imagery&width=800&height=400&seq=4&orientation=landscape" alt="Weather Prediction Project" class="w-full h-full object-cover object-top">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Weather Prediction</h3>
+                        <p class="text-gray-600 mb-4">A weather forecast application using external APIs to provide accurate weather information and predictions.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">JavaScript</span>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">API</span>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">Bootstrap</span>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">Geolocation</span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="#" class="px-4 py-2 bg-primary text-white !rounded-button text-sm hover:bg-opacity-90 transition-colors whitespace-nowrap">View Demo</a>
+                            <a href="#" class="px-4 py-2 border border-gray-300 text-gray-700 !rounded-button text-sm hover:bg-gray-50 transition-colors whitespace-nowrap">Source Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Experience Section -->
+    <section id="experience" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center text-secondary">Experience</h2>
+            
+            <div class="max-w-3xl mx-auto">
+                <div class="relative pl-8 sm:pl-32 py-6 group">
+                    <div class="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-full before:px-px before:bg-gray-200 sm:before:ml-[6.5rem] before:self-start before:-translate-x-1/2 before:translate-y-3 after:absolute after:left-2 sm:after:left-0 after:w-4 after:h-4 after:bg-primary after:border-2 after:box-content after:border-white after:rounded-full sm:after:ml-[6.5rem] after:-translate-x-1/2 after:translate-y-1.5">
+                        <time class="sm:absolute left-0 translate-y-0.5 inline-flex items-center justify-center text-xs font-semibold uppercase w-20 h-6 mb-3 sm:mb-0 text-primary bg-primary bg-opacity-10 rounded-full">Current</time>
+                        <div class="text-xl font-bold text-gray-900">Web Development Intern</div>
+                    </div>
+                    <div class="flex items-center space-x-2 mb-1">
+                        <span class="text-lg font-medium text-primary">SD Pro</span>
+                        <span class="text-gray-500">•</span>
+                        <span class="text-gray-500">Chennai, Tamil Nadu</span>
+                    </div>
+                    <div class="text-gray-600 mb-4">
+                        <p class="mb-2">Working on developing responsive web applications using modern frameworks and technologies.</p>
+                        <ul class="list-disc list-inside space-y-1 text-gray-600">
+                            <li>Collaborating with senior developers on client projects</li>
+                            <li>Implementing responsive UI designs using modern CSS frameworks</li>
+                            <li>Integrating RESTful APIs with frontend applications</li>
+                            <li>Participating in code reviews and team meetings</li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">HTML/CSS</span>
+                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">JavaScript</span>
+                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">React</span>
+                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">Node.js</span>
+                    </div>
+                </div>
+                
+                <div class="relative pl-8 sm:pl-32 py-6 group">
+                    <div class="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-full before:px-px before:bg-gray-200 sm:before:ml-[6.5rem] before:self-start before:-translate-x-1/2 before:translate-y-3 after:absolute after:left-2 sm:after:left-0 after:w-4 after:h-4 after:bg-gray-400 after:border-2 after:box-content after:border-white after:rounded-full sm:after:ml-[6.5rem] after:-translate-x-1/2 after:translate-y-1.5">
+                        <time class="sm:absolute left-0 translate-y-0.5 inline-flex items-center justify-center text-xs font-semibold uppercase w-20 h-6 mb-3 sm:mb-0 text-gray-600 bg-gray-100 rounded-full">2023</time>
+                        <div class="text-xl font-bold text-gray-900">College Project Lead</div>
+                    </div>
+                    <div class="flex items-center space-x-2 mb-1">
+                        <span class="text-lg font-medium text-gray-700">Dhanalashmi Srinivasan College</span>
+                        <span class="text-gray-500">•</span>
+                        <span class="text-gray-500">Kumbakonam</span>
+                    </div>
+                    <div class="text-gray-600 mb-4">
+                        <p class="mb-2">Led a team of 4 students to develop a campus management system for the college.</p>
+                        <ul class="list-disc list-inside space-y-1 text-gray-600">
+                            <li>Designed database schema and system architecture</li>
+                            <li>Coordinated development tasks among team members</li>
+                            <li>Implemented core functionality modules</li>
+                            <li>Presented project progress to faculty advisors</li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">MySQL</span>
+                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">PHP</span>
+                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">JavaScript</span>
+                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">Bootstrap</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Skills Section -->
+    <section id="skills" class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-center text-secondary">Skills & Tools</h2>
+            <p class="text-lg text-gray-600 text-center mb-12 max-w-2xl mx-auto">A collection of technologies and tools I've worked with throughout my academic and professional journey.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Development Skills -->
+                <div class="bg-white p-8 rounded-lg shadow-sm">
+                    <h3 class="text-xl font-semibold mb-6 flex items-center text-secondary">
+                        <div class="w-8 h-8 flex items-center justify-center bg-primary bg-opacity-10 rounded-lg text-primary mr-3">
+                            <i class="ri-code-s-slash-line"></i>
+                        </div>
+                        Development Skills
+                    </h3>
+                    
+                    <div class="space-y-5">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">Frontend Development</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">Backend Development</span>
+                                <span>70%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 70%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">DevOps</span>
+                                <span>65%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 65%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">Database Management</span>
+                                <span>75%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">Responsive Design</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tools & Technologies -->
+                <div class="bg-white p-8 rounded-lg shadow-sm">
+                    <h3 class="text-xl font-semibold mb-6 flex items-center text-secondary">
+                        <div class="w-8 h-8 flex items-center justify-center bg-primary bg-opacity-10 rounded-lg text-primary mr-3">
+                            <i class="ri-tools-line"></i>
+                        </div>
+                        Tools & Technologies
+                    </h3>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex items-center p-3 border border-gray-100 rounded-lg">
+                            <div class="w-8 h-8 flex items-center justify-center text-primary mr-3">
+                                <i class="ri-html5-line"></i>
+                            </div>
+                            <span>HTML/CSS</span>
+                        </div>
+                        
+                        <div class="flex items-center p-3 border border-gray-100 rounded-lg">
+                            <div class="w-8 h-8 flex items-center justify-center text-primary mr-3">
+                                <i class="ri-javascript-line"></i>
+                            </div>
+                            <span>JavaScript</span>
+                        </div>
+                        
+                        <div class="flex items-center p-3 border border-gray-100 rounded-lg">
+                            <div class="w-8 h-8 flex items-center justify-center text-primary mr-3">
+                                <i class="ri-reactjs-line"></i>
+                            </div>
+                            <span>React</span>
+                        </div>
+                        
+                        <div class="flex items-center p-3 border border-gray-100 rounded-lg">
+                            <div class="w-8 h-8 flex items-center justify-center text-primary mr-3">
+                                <i class="ri-database-2-line"></i>
+                            </div>
+                            <span>MySQL</span>
+                        </div>
+                        
+                        <div class="flex items-center p-3 border border-gray-100 rounded-lg">
+                            <div class="w-8 h-8 flex items-center justify-center text-primary mr-3">
+                                <i class="ri-git-branch-line"></i>
+                            </div>
+                            <span>Git/GitHub</span>
+                        </div>
+                        
+                        <div class="flex items-center p-3 border border-gray-100 rounded-lg">
+                            <div class="w-8 h-8 flex items-center justify-center text-primary mr-3">
+                                <i class="ri-terminal-box-line"></i>
+                            </div>
+                            <span>VS Code</span>
+                        </div>
+                        
+                        <div class="flex items-center p-3 border border-gray-100 rounded-lg">
+                            <div class="w-8 h-8 flex items-center justify-center text-primary mr-3">
+                                <i class="ri-server-line"></i>
+                            </div>
+                            <span>Node.js</span>
+                        </div>
+                        
+                        <div class="flex items-center p-3 border border-gray-100 rounded-lg">
+                            <div class="w-8 h-8 flex items-center justify-center text-primary mr-3">
+                                <i class="ri-pie-chart-line"></i>
+                            </div>
+                            <span>Power BI</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-center text-secondary">Get In Touch</h2>
+            <p class="text-lg text-gray-600 text-center mb-12 max-w-2xl mx-auto">Feel free to contact me for any opportunities or collaborations. I'm always open to discussing new projects and ideas.</p>
+            
+            <div class="flex flex-col md:flex-row gap-10 max-w-5xl mx-auto">
+                <div class="md:w-1/2">
+                    <form class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-gray-700 mb-2">Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded focus:border-primary" placeholder="Your name">
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-gray-700 mb-2">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded focus:border-primary" placeholder="Your email">
+                        </div>
+                        
+                        <div>
+                            <label for="subject" class="block text-gray-700 mb-2">Subject</label>
+                            <input type="text" id="subject" class="w-full px-4 py-3 border border-gray-300 rounded focus:border-primary" placeholder="Subject">
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-gray-700 mb-2">Message</label>
+                            <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded focus:border-primary" placeholder="Your message"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="px-6 py-3 bg-primary text-white !rounded-button hover:bg-opacity-90 transition-colors whitespace-nowrap">Send Message</button>
+                    </form>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <div class="h-64 mb-8 rounded-lg overflow-hidden">
+                        <div style="background-image: url('https://public.readdy.ai/gen_page/map_placeholder_1280x720.png');" class="w-full h-full bg-center bg-cover"></div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-lg text-primary mr-4 mt-1">
+                                <i class="ri-map-pin-line"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-lg mb-1">Location</h4>
+                                <p class="text-gray-600">Kumbakonam, Tamil Nadu, India</p>
+                                <p class="text-gray-600">Dhanalashmi Srinivasan College of Engineering</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-lg text-primary mr-4 mt-1">
+                                <i class="ri-mail-line"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-lg mb-1">Email</h4>
+                                <p class="text-gray-600">mohamedsafris11@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-lg text-primary mr-4 mt-1">
+                                <i class="ri-phone-line"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-lg mb-1">Phone</h4>
+                                <p class="text-gray-600">0987654321</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4 pt-4">
+                            <a href="#" class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-lg text-primary hover:bg-primary hover:text-white transition-colors">
+                                <i class="ri-github-fill"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-lg text-primary hover:bg-primary hover:text-white transition-colors">
+                                <i class="ri-linkedin-fill"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-lg text-primary hover:bg-primary hover:text-white transition-colors">
+                                <i class="ri-twitter-fill"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-lg text-primary hover:bg-primary hover:text-white transition-colors">
+                                <i class="ri-instagram-fill"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-secondary text-white py-10">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <a href="#" class="text-2xl font-['Pacifico'] text-white">MS</a>
+                    <p class="mt-2 text-gray-300">Final Year CSE Student</p>
+                </div>
+                
+                <div class="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-6">
+                    <a href="#about" class="text-gray-300 hover:text-white transition-colors">About</a>
+                    <a href="#projects" class="text-gray-300 hover:text-white transition-colors">Projects</a>
+                    <a href="#experience" class="text-gray-300 hover:text-white transition-colors">Experience</a>
+                    <a href="#skills" class="text-gray-300 hover:text-white transition-colors">Skills</a>
+                    <a href="#contact" class="text-gray-300 hover:text-white transition-colors">Contact</a>
+                </div>
+                
+                <div class="mt-6 md:mt-0">
+                    <a href="#" class="px-5 py-2 bg-white text-secondary !rounded-button hover:bg-gray-100 transition-colors whitespace-nowrap">Download CV</a>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Mohamed Safris. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script id="navigation-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const closeMenuButton = document.getElementById('close-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+            
+            function toggleMobileMenu() {
+                if (mobileMenu.classList.contains('translate-x-full')) {
+                    mobileMenu.classList.remove('translate-x-full', 'opacity-0');
+                    mobileMenu.classList.add('translate-x-0', 'opacity-100');
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    mobileMenu.classList.remove('translate-x-0', 'opacity-100');
+                    mobileMenu.classList.add('translate-x-full', 'opacity-0');
+                    document.body.style.overflow = '';
+                }
+            }
+            
+            mobileMenuButton.addEventListener('click', toggleMobileMenu);
+            closeMenuButton.addEventListener('click', toggleMobileMenu);
+            
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', toggleMobileMenu);
+            });
+            
+            // Smooth scrolling for all anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const navHeight = 80;
+                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script id="form-validation-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.querySelector('#contact form');
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const nameInput = document.getElementById('name');
+                    const emailInput = document.getElementById('email');
+                    const subjectInput = document.getElementById('subject');
+                    const messageInput = document.getElementById('message');
+                    
+                    let isValid = true;
+                    
+                    // Simple validation
+                    if (!nameInput.value.trim()) {
+                        nameInput.classList.add('border-red-500');
+                        isValid = false;
+                    } else {
+                        nameInput.classList.remove('border-red-500');
+                    }
+                    
+                    if (!emailInput.value.trim() || !isValidEmail(emailInput.value)) {
+                        emailInput.classList.add('border-red-500');
+                        isValid = false;
+                    } else {
+                        emailInput.classList.remove('border-red-500');
+                    }
+                    
+                    if (!subjectInput.value.trim()) {
+                        subjectInput.classList.add('border-red-500');
+                        isValid = false;
+                    } else {
+                        subjectInput.classList.remove('border-red-500');
+                    }
+                    
+                    if (!messageInput.value.trim()) {
+                        messageInput.classList.add('border-red-500');
+                        isValid = false;
+                    } else {
+                        messageInput.classList.remove('border-red-500');
+                    }
+                    
+                    if (isValid) {
+                        // Here you would normally send the form data to a server
+                        alert('Message sent successfully! (This is a demo)');
+                        contactForm.reset();
+                    }
+                });
+                
+                function isValidEmail(email) {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    return emailRegex.test(email);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
